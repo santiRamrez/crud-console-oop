@@ -15,7 +15,8 @@ from controlador.val_comuna import delComuna
 from controlador.val_comuna import findAllComuna
 
 # ---- Empleado Controladores ----
-# from controlador.val_empleado import validarLogin
+
+
 
 
 def startCargo():

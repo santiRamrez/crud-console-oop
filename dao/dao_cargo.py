@@ -118,3 +118,22 @@ class DaoCargo:
 
         return result
 
+
+    def getRecordByName(self, cargo):
+        sql = "SELECT * FROM cargo WHERE = %s"
+        c = self.getConex()
+        result = None
+        try:
+            cursor = c.getConex().cursor()
+            cursor.execute(sql, (cargo.getDescripcionCargo(), ))
+            result = cursor.fetchone()
+            
+        except Exception as ex:
+            print(traceback.print_exc())
+
+        finally:
+            if c.getConex().is_connected():
+                c.closeConex()
+
+        return result
+

@@ -2,6 +2,10 @@
 from controlador.dto_comuna import ComunaDTO
 from modelo.comuna import Comuna
 
+def getComunaRecordByName(name):
+    data = ComunaDTO().getRecordByName(name)
+    return data
+
 def findComuna(a):
     identi = int(a)
     if identi > 0:

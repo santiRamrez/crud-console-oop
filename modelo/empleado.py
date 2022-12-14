@@ -1,4 +1,6 @@
 class Empleado:
+  __listaComunas = []  
+  __listaCargos = []  
   def __init__(self, runEmpleado=None, nombreEmpleado=None, apellidoEmpleado=None, cargo=None, direccionEmpleado=None, claveEmpleado=None, correoEmpleado=None, comuna=None):
         self.__runEmpleado = runEmpleado
         self.__nombreEmpleado = nombreEmpleado
@@ -39,6 +41,12 @@ Correo: {self.__correoEmpleado} - Comuna: {self.__comuna}\n'''
 
   def getComuna(self):
       return self.__comuna 
+
+  def getListaComuna(self):
+    return self.__listaComunas    
+
+  def getListaCargos(self):
+    return self.__listaCargos   
 
 #  ------ Setters  ---------
   def setRunEmpleado(self, a):

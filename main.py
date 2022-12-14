@@ -7,8 +7,9 @@ from controlador.val_empleado import validarLogin
 #### login
 intentos = 1
 login = False
+on = True
 print("\n---- Sistema Minimarket ----\n")
-while intentos <= 3:
+while intentos <= 3 and on:
     try:
         resu = validarLogin()
 
@@ -28,6 +29,7 @@ while intentos <= 3:
 
                 else:
                   login = False
+                  on = False
                   break;
                   
             
@@ -37,7 +39,7 @@ while intentos <= 3:
     except:
         print("intentar nuevamengte")
 if intentos == 4:
-    print("contraseña boqueada")
+    print("contraseña bloqueada")
 
 
 

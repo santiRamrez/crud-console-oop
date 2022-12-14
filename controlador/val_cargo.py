@@ -2,6 +2,10 @@
 from controlador.dto_cargo import CargoDTO
 from modelo.cargo import Cargo
 
+def getCargoRecordByName(name):
+    data = CargoDTO().getRecordByName(name)
+    return data
+
 def findCargo(a):
     identi = int(a)
     if identi > 0:
