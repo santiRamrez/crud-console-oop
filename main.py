@@ -2,6 +2,10 @@
 from controlador.menus import startCargo
 from controlador.menus import startComuna
 from controlador.menus import mainMenu
+from controlador.menus import startEmpleado
+
+
+# Login de acceso al programa
 from controlador.val_empleado import validarLogin
 
 #### login
@@ -16,10 +20,10 @@ while intentos <= 3 and on:
         if resu is not None:
             login = True
             while login:
-                print(f"\nBienvenido(a) Sr(a). : Administrador")
+                print(f"Bienvenido(a) Sr(a). : Administrador")
                 op = mainMenu()
                 if (op == 1):
-                  print('\n... En construcción\n')
+                  startEmpleado()
 
                 elif (op == 2):
                   startCargo()

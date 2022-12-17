@@ -15,8 +15,32 @@ from controlador.val_comuna import delComuna
 from controlador.val_comuna import findAllComuna
 
 # ---- Empleado Controladores ----
+from controlador.val_empleado import optionsEmpleado
+from controlador.val_empleado import addEmpleado
+from controlador.val_empleado import updateEmpleado
+from controlador.val_empleado import delEmpleado
+from controlador.val_empleado import findEmpleadoByComuna
 
-
+def startEmpleado():
+    while True:
+        try:
+            op = optionsEmpleado()
+            if op == 6:
+                break;
+            if op == 1:
+                addEmpleado()
+            if op == 2:
+                updateEmpleado()
+            if op == 3:
+                delEmpleado()
+            if op == 4:
+                print("...en construcción - empleados por cargo")
+            if op == 5:
+                findEmpleadoByComuna()
+            else:
+                break;
+        except:
+            print("Algo salió mal :(")
 
 
 def startCargo():

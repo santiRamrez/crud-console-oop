@@ -34,4 +34,4 @@ class ComunaDTO:
   def getRecordByName(self, name):
         daocomuna = DaoComuna()
         res = daocomuna.getRecordByName(Comuna(descripcionComuna=name))
-        return res[0]
+        return res

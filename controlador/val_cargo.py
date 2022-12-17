@@ -2,9 +2,14 @@
 from controlador.dto_cargo import CargoDTO
 from modelo.cargo import Cargo
 
+# ---- Retorna el registro de cargo en forma de dupla
 def getCargoRecordByName(name):
-    data = CargoDTO().getRecordByName(name)
-    return data
+    if name:
+        data = CargoDTO().getRecordByName(name)
+        return data
+    else:
+        return ""
+
 
 def findCargo(a):
     identi = int(a)

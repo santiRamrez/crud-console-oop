@@ -120,7 +120,7 @@ class DaoCargo:
 
 
     def getRecordByName(self, cargo):
-        sql = "SELECT * FROM cargo WHERE = %s"
+        sql = "SELECT * FROM cargo WHERE nombrecargo = %s"
         c = self.getConex()
         result = None
         try:

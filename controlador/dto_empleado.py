@@ -19,3 +19,18 @@ class EmpleadoDTO:
         daoempleado = DaoEmpleado()
         resultado = daoempleado.addEmpleado(Empleado(runEmpleado=run, nombreEmpleado=nombre, apellidoEmpleado=apellido, cargo=cargo, direccionEmpleado=direccion, claveEmpleado=clave, correoEmpleado=correo, comuna=comuna))
         return resultado
+
+    def updateEmpleado(self, idBD, run, nombre, apellido, cargo, direccion, clave, correo, comuna):
+        daoempleado = DaoEmpleado()
+        resultado = daoempleado.updateEmpleado(Empleado(idBD=idBD, runEmpleado=run, nombreEmpleado=nombre, apellidoEmpleado=apellido, cargo=cargo, direccionEmpleado=direccion, claveEmpleado=clave, correoEmpleado=correo, comuna=comuna))
+        return resultado
+
+    def delEmpleado(self, run):
+        daoempleado = DaoEmpleado()
+        res = daoempleado.delEmpleado(Empleado(runEmpleado=run))
+        return True if res is not None else None
+    
+    def findEmpleadoByComuna(self, idcomuna):
+        daoempleado = DaoEmpleado()
+        res = daoempleado.findEmpleadoByComuna(Empleado(comuna=idcomuna))
+        return res

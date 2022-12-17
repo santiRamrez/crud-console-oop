@@ -1,7 +1,8 @@
 class Empleado:
   __listaComunas = []  
   __listaCargos = []  
-  def __init__(self, runEmpleado=None, nombreEmpleado=None, apellidoEmpleado=None, cargo=None, direccionEmpleado=None, claveEmpleado=None, correoEmpleado=None, comuna=None):
+  def __init__(self, idBD=None, runEmpleado=None, nombreEmpleado=None, apellidoEmpleado=None, cargo=None, direccionEmpleado=None, claveEmpleado=None, correoEmpleado=None, comuna=None):
+        self.__idBD = idBD
         self.__runEmpleado = runEmpleado
         self.__nombreEmpleado = nombreEmpleado
         self.__apellidoEmpleado = apellidoEmpleado
@@ -13,11 +14,16 @@ class Empleado:
 
 
   def __str__(self):
-        return f'''\nNombre: {self.__nombreEmpleado} {self.__apellidoEmpleado} - {self.__runEmpleado} 
-Cargo: {self.__cargo} - Dirección: {self.__direccionEmpleado} 
-Correo: {self.__correoEmpleado} - Comuna: {self.__comuna}\n'''
+        return f'''\nNombre: {self.__nombreEmpleado} {self.__apellidoEmpleado} \nRun: {self.__runEmpleado} 
+Cargo: {self.__cargo}
+Dirección: {self.__direccionEmpleado} 
+Correo: {self.__correoEmpleado}
+Comuna: {self.__comuna}\n'''
 
 #  ------ Getters  ---------
+  def getId(self):
+    return self.__idBD
+
   def getRunEmpleado(self):
       return self.__runEmpleado
 

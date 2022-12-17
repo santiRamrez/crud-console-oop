@@ -34,5 +34,5 @@ class CargoDTO:
   def getRecordByName(self, name):
         daocargo = DaoCargo()
         res = daocargo.getRecordByName(Cargo(descripcionCargo=name))
-        return res[0]
+        return res
 
