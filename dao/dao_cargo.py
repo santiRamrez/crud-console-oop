@@ -136,4 +136,22 @@ class DaoCargo:
                 c.closeConex()
 
         return result
+    
+    def getRecordByID(self, id):
+        sql = "SELECT * FROM cargo WHERE idcargo = %s"
+        c = self.getConex()
+        result = None
+        try:
+            cursor = c.getConex().cursor()
+            cursor.execute(sql, (id, ))
+            result = cursor.fetchone()
+            
+        except Exception as ex:
+            print(traceback.print_exc())
+
+        finally:
+            if c.getConex().is_connected():
+                c.closeConex()
+
+        return result
 

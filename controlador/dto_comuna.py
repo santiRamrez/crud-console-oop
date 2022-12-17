@@ -35,3 +35,8 @@ class ComunaDTO:
         daocomuna = DaoComuna()
         res = daocomuna.getRecordByName(Comuna(descripcionComuna=name))
         return res
+      
+  def getRecordByID(self, id):
+        daocomuna = DaoComuna()
+        res = daocomuna.getRecordByID(id)
+        return res

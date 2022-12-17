@@ -185,6 +185,24 @@ class DaoEmpleado:
                 c.closeConex()
 
         return result
+
+    def findEmpleadoByCargo(self, emp):
+        sql = "SELECT * FROM EMPLEADO WHERE idcargo = %s;"
+        c = self.getConex()
+        result = None
+        try:
+            cursor = c.getConex().cursor()
+            cursor.execute(sql, (emp.getCargo(), ))
+            result = cursor.fetchall()
+            
+        except Exception as ex:
+            print(traceback.print_exc())
+
+        finally:
+            if c.getConex().is_connected():
+                c.closeConex()
+
+        return result
     
 
 

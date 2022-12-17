@@ -34,3 +34,8 @@ class EmpleadoDTO:
         daoempleado = DaoEmpleado()
         res = daoempleado.findEmpleadoByComuna(Empleado(comuna=idcomuna))
         return res
+    
+    def findEmpleadoByCargo(self, idcargo):
+        daoempleado = DaoEmpleado()
+        res = daoempleado.findEmpleadoByCargo(Empleado(cargo=idcargo))
+        return res

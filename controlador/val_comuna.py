@@ -9,11 +9,18 @@ def getComunaRecordByName(name):
     else:
         return ""
 
+def getRecordByID_Comuna(id):
+    if id:
+        data = ComunaDTO().getRecordByID(id)
+        return data
+    else:
+        return ""
+
 def findComuna(a):
     identi = int(a)
     if identi > 0:
-      startDto = ComunaDTO()
-      return startDto.findComuna(identi)
+      data = ComunaDTO().startDto.findComuna(identi)
+      return data
 
 def addComuna():
     try:
@@ -69,7 +76,7 @@ def findAllComuna():
     startDto = ComunaDTO()
     list = startDto.findAllComuna()
     if len(list) > 0:
-        print('\n    Id  |  Comuna ')
+        print('\n    Id   |   Comuna ')
         for record in list:
           print(' ----------------------------- ')
           print(f'    {record[1]}   |   {record[2]}   ')

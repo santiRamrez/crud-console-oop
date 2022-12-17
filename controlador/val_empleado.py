@@ -5,14 +5,21 @@ from modelo.empleado import Empleado
 # ---- Importa funciones de otros objetos ----
 from controlador.val_cargo import getCargoRecordByName
 from controlador.val_cargo import findAllCargo
+from controlador.val_cargo import getRecordByID_Cargo # ---- It needs at pk and return a tuple with the record from dB
+
 from controlador.val_comuna import getComunaRecordByName
 from controlador.val_comuna import findAllComuna
+from controlador.val_comuna import getRecordByID_Comuna #--- It needs at pk and return a tuple with the record from dB
 
+def valNoEmpty(b):
+    a = input(b)
+    if len(a) > 0:
+        return a
 
 def validarLogin():
     try:
-        username = "CG@INACAP.CL " #input("Ingrese correo de administrador: ")
-        clave =  "1234a#" #input("Ingrese contraseña: ")
+        username = input("Ingrese correo de administrador: ")
+        clave = input("Ingrese contraseña: ")
         resultado = EmpleadoDTO().validarLogin(username, clave)
         return True if resultado else None
     except:
@@ -28,20 +35,20 @@ def getRecordEmpleado(run):
 
 def addEmpleado():
     try:
-        run = input("Por favor ingrese su run: ")
-        name = input("Nombre: ")
-        lastName = input("Apellido: ")
+        run = valNoEmpty("Por favor ingrese su run: ") 
+        name = valNoEmpty("Nombre: ") 
+        lastName = valNoEmpty("Apellido: ") 
         #Muestra los cargos registrados
         findAllCargo()
         print("\nIngrese la descripción de un cargo registrado")
-        cargo = input("Descripción del cargo: ").upper()
-        address = input("Dirección: ")
-        password = input("Clave: ")
-        email = input("Corre electrónico: ")
+        cargo = valNoEmpty("Descripción del cargo: ").upper()
+        address = valNoEmpty("Dirección: ").upper()
+        password = valNoEmpty("Clave: ").upper()
+        email = valNoEmpty("Correo electrónico: ").upper()
         #Muestra las comunas registrados
         findAllComuna()
         print("\nIngrese el nombre de una comuna registrada")
-        comuna = input("Comuna: ").upper()
+        comuna = valNoEmpty("Comuna: ").upper()
 
         if getRecordEmpleado(run):
             print(f'Ya hay un registro con el run {run} :(')
@@ -107,20 +114,40 @@ def delEmpleado():
         print('Algo salió mal :(')
 
 def findEmpleadoByComuna():
-    #Muestra las comunas registrados
-    findAllComuna()
-    print("\nIngrese el nombre de una comuna registrada, \npara ver los empleados de esa comuna \n-----------------------------------\n")
-    comuna = input("Comuna: ").upper()
-    idcomuna = getComunaRecordByName(comuna)[0] if getComunaRecordByName(comuna) else False
+    try:
+        #Muestra las comunas registrados
+        findAllComuna()
+        print("\nIngrese el nombre de una comuna registrada, \npara ver los empleados de esa comuna \n-----------------------------------\n")
+        comuna = input("Comuna: ").upper()
+        idcomunaDB = getComunaRecordByName(comuna)[0] if getComunaRecordByName(comuna) else False
 
-    if idcomuna:
-        startDto = EmpleadoDTO()
-        EmpleadosDB = startDto.findEmpleadoByComuna(idcomuna)
-        print(f"\nEmpleados de la comuna {comuna}\n ------------------------ ")
-        for emp in EmpleadosDB:
-            print(f'Run: {emp[3]} \nNombre: {emp[4]} {emp[5]} \n')
+        if idcomunaDB:
+            startDto = EmpleadoDTO()
+            EmpleadosDB = startDto.findEmpleadoByComuna(idcomunaDB)
+            print(f"\nEmpleados de la comuna {comuna}\n ------------------------ ")
+            for emp in EmpleadosDB:
+                cargo = getRecordByID_Cargo(emp[1])[2]
+                print(f'Run: {emp[3]} \nNombre: {emp[4]} {emp[5]} \nCargo: {cargo} \nComuna: {comuna} \nEmail: {emp[8]} \nDirección: {emp[6]}\n')
+    except:
+        print("Error findEmpleadoByComuna")
 
+def findEmpleadoByCargo():
+    try:
+        #Muestra las comunas registrados
+        findAllCargo()
+        print("\nIngrese el nombre de un cargo registrado, \npara ver los empleados en esa función \n-----------------------------------\n")
+        cargo = input("Cargo: ").upper()
+        idcargoDB = getCargoRecordByName(cargo)[0] if getCargoRecordByName(cargo) else False
 
+        if idcargoDB:
+            startDto = EmpleadoDTO()
+            EmpleadosDB = startDto.findEmpleadoByCargo(idcargoDB)
+            print(f"\nEmpleados con el cargo {cargo}\n ------------------------ ")
+            for emp in EmpleadosDB:
+                comuna = getRecordByID_Comuna(emp[2])[2]
+                print(f'Run: {emp[3]} \nNombre: {emp[4]} {emp[5]} \nCargo: {cargo} \nComuna: {comuna} \nEmail: {emp[8]} \nDirección: {emp[6]}\n')
+    except:
+        print("Error findEmpleadoByCargo")
 
 
 def optionsEmpleado():

@@ -8,7 +8,6 @@ class Cargo:
         return f'\nId: {self.__idCargo} - Descripción: {self.__descripcionCargo}'
 
 # ---- Getters ----
-
   def getListaCargo(self):
       return self.__listaCargo
  

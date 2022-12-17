@@ -36,3 +36,8 @@ class CargoDTO:
         res = daocargo.getRecordByName(Cargo(descripcionCargo=name))
         return res
 
+  def getRecordByID(self, id):
+        daocargo = DaoCargo()
+        res = daocargo.getRecordByID(id)
+        return res
+

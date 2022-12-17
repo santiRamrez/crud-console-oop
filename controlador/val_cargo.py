@@ -10,6 +10,12 @@ def getCargoRecordByName(name):
     else:
         return ""
 
+def getRecordByID_Cargo(id):
+    if id:
+        data = CargoDTO().getRecordByID(id)
+        return data
+    else:
+        return ""
 
 def findCargo(a):
     identi = int(a)
